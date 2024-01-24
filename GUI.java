@@ -2,24 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI extends JFrame {
-    private JTextField itemIdInput, quantityInput, subtotalDisplay, itemDetailsDisplay,cartItemsDisplay;
+    private JTextField itemIdInput, quantityInput, subtotalDisplay, itemDetailsDisplay;
     private JButton[] actionButtons = new JButton[6];
 
     public GUI() {
-        setTitle("Shopping Cart Simulation");
+        setTitle("CNT Project 1");
         setSize(800, 700); // Adjust size as needed
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         getContentPane().setBackground(Color.DARK_GRAY);
 
-        // Panel for item ID and quantity inputs
-        JPanel inputPanel = new JPanel();
+        setLayout(new BorderLayout(10, 10)); // Use BorderLayout
+
+        // Panel for item ID and quantity inputs, now using FlowLayout
+        JPanel inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
         itemIdInput = new JTextField(40);
         quantityInput = new JTextField(40);
         itemDetailsDisplay = new JTextField(40);
         subtotalDisplay = new JTextField(40);
-        
+
         inputPanel.add(new JLabel("Enter Item ID for Item #:"));
         inputPanel.add(itemIdInput);
         inputPanel.add(new JLabel("Enter Quantity for Item #:"));
@@ -29,35 +30,42 @@ public class GUI extends JFrame {
         inputPanel.add(new JLabel("Current Subtotal for N Items:"));
         inputPanel.add(subtotalDisplay);
 
-        // Adding the input panel to the main frame
-        add(inputPanel);
- 
-       
+        // Adding the input panel to the NORTH of the main frame
+        add(inputPanel, BorderLayout.NORTH);
 
-        // Cart Items Display
-        cartItemsDisplay = new JTextField(40);
-        inputPanel.add(new JLabel("Your shopping cart is: " + "Change here"));
-
+        // Shopping Cart Display in the CENTER
         JPanel shoppingCart = new JPanel();
-        shoppingCart.setBackground(Color.DARK_GRAY);
         shoppingCart.setLayout(new BoxLayout(shoppingCart, BoxLayout.Y_AXIS));
-        add(shoppingCart);
+        shoppingCart.add(new JLabel("Your shopping cart is: " + "Change here"));
+        JTextArea a1 = new JTextArea("Shopping cart 1");
+        JTextArea a2 = new JTextArea("Shopping cart 2");
+        JTextArea a3 = new JTextArea("Shopping cart 3");
+        JTextArea a4 = new JTextArea("Shopping cart 4");
+        JTextArea a5 = new JTextArea("Shopping cart 5");
 
+        a1.setEditable(false);
+        a2.setEditable(false);
+        a3.setEditable(false);
+        a4.setEditable(false);
+        a5.setEditable(false);
 
-       
-       
+        shoppingCart.add(a1);
+        shoppingCart.add(a2);
+        shoppingCart.add(a3);
+        shoppingCart.add(a4);
+        shoppingCart.add(a5);
         
-        // Buttons Panel
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 90, 80));
-        add(buttonPanel);
-       
+        add(shoppingCart, BorderLayout.CENTER);
+        
+
+        // Buttons Panel at the SOUTH
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 60, 30));
         for (int i = 0; i < actionButtons.length; i++) {
             actionButtons[i] = new JButton("Button " + (i + 1));
-            actionButtons[i].setSize(100,100);
             actionButtons[i].setPreferredSize(new Dimension(100, 50));
             buttonPanel.add(actionButtons[i]);
         }
-        add(buttonPanel);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         setVisible(true);
     }
