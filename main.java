@@ -5,7 +5,8 @@ Date: Sunday January 28, 2024
 */
 
 import javax.swing.*;
-public class main {
+
+public class Main {
 
     public static void main(String[] args) {
     
