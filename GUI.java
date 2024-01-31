@@ -12,6 +12,7 @@ public class GUI extends JFrame {
     private JPanel inputPanel,shoppingCart,buttonPanel;
     private JTextArea a1,a2,a3,a4,a5;
     private String lastInput = "";
+    private int lastIntInput = 0;
     private boolean isClicked = false;
     private Main.ButtonActionListener buttonActionListener;
 
@@ -93,16 +94,50 @@ public class GUI extends JFrame {
         actionButtons[4].setText("Empty Cart- Start New Order");
         actionButtons[5].setText("Find Item: Curr#");
 
-        for (int i = 0; i < actionButtons.length; i++) {
-            final int buttonIndex = i;
-
-        } 
         
-        actionButtons[0].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        
+        
+         // Use final variable for use in lambda
+        actionButtons[0].addActionListener(e -> {//Find item 
+            if (buttonActionListener != null) {
                 lastInput = itemIdInput.getText();
-                
+                lastIntInput = Integer.parseInt(quantityInput.getText());
+                buttonActionListener.onButtonClicked(0, getLastInput(),getLastIntInput());
+            }
+        });
+
+        actionButtons[1].addActionListener(e -> {//Add items to cart
+            if (buttonActionListener != null) {
+                lastInput = itemIdInput.getText();
+                buttonActionListener.onButtonClicked(1, getLastInput(),0);
+            }
+        });
+
+        actionButtons[2].addActionListener(e -> {//view curr cart
+            if (buttonActionListener != null) {
+                lastInput = itemIdInput.getText();
+                buttonActionListener.onButtonClicked(2, getLastInput(),0);
+            }
+        });
+
+        actionButtons[3].addActionListener(e -> {//check out
+            if (buttonActionListener != null) {
+                lastInput = itemIdInput.getText();
+                buttonActionListener.onButtonClicked(3, getLastInput(),0);
+            }
+        });
+
+        actionButtons[4].addActionListener(e -> {//empty cart start new order
+            if (buttonActionListener != null) {
+                lastInput = itemIdInput.getText();
+                buttonActionListener.onButtonClicked(4, getLastInput(),0);
+            }
+        });
+
+        actionButtons[5].addActionListener(e -> {//Find item current
+            if (buttonActionListener != null) {
+                lastInput = itemIdInput.getText();
+                buttonActionListener.onButtonClicked(5, getLastInput(),0);
             }
         });
 
@@ -112,7 +147,10 @@ public class GUI extends JFrame {
        
 
         setVisible(true);
+    
     }
+
+
 
     
 
@@ -304,5 +342,23 @@ public class GUI extends JFrame {
     public void setLastInput(String lastInput) {
         this.lastInput = lastInput;
     }
+
+
+
+
+
+    public int getLastIntInput() {
+        return lastIntInput;
+    }
+
+
+
+
+
+    public void setLastIntInput(int lastIntInput) {
+        this.lastIntInput = lastIntInput;
+    }
+
+    
 
 }

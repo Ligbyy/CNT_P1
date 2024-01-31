@@ -19,11 +19,11 @@ import java.awt.event.ActionListener;
 public class Main {
 
     public interface ButtonActionListener {
-        void onButtonClicked(int buttonIndex, String additionalData);
+        void onButtonClicked(int buttonIndex, String additionalData,int intInput);
     }
 
     public static void main(String[] args) {
-         Cart availableStock = new Cart();
+        Cart availableStock = new Cart();
         Cart eCart = new Cart(); 
         
         readItemsFromFile("inventory.csv",availableStock.getCart());
@@ -34,11 +34,17 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             myGUIHolder[0] = new GUI(new ButtonActionListener() {
                 @Override
-                public void onButtonClicked(int buttonIndex, String additionalData) {
+                public void onButtonClicked(int buttonIndex, String additionalData, int intInput) {
                     switch (buttonIndex) {
                         case 0:
-                            System.out.println("Button 1 clicked, data: " + additionalData);
-                            // Logic for button 1 click
+                        int isFound = 0;
+                        isFound = searchStock(availableStock.getCart(), additionalData,intInput);
+                            System.out.println("Button 1 clicked, data: " + additionalData + "\nInt input: " + intInput);
+                            if(isFound != 0){
+                                myGUIHolder[0].getItemDetailsDisplay().setText(availableStock.getCart().get(isFound).toString());
+                            }else{
+                                System.out.println("Item not found!");
+                            }
                             break;
                         case 1:
                             System.out.println("Button 2 clicked, data: " + additionalData);
@@ -69,17 +75,6 @@ public class Main {
         });
 
        
-       
-        
-        
-       
-
-        
-            
-            
-        
-        
-        
 }
 
     public static void readItemsFromFile(String fileName, List<Item> cartItems) {
@@ -104,13 +99,14 @@ public class Main {
         
     }
 
-    public static boolean searchStock(ArrayList<Item> stockList,String idString){
+    public static int searchStock(ArrayList<Item> stockList,String idString,int quantity){
+        
         for (int index = 0; index < stockList.size(); index++) {
-            if (stockList.get(index).getItemId().equalsIgnoreCase(idString)) {
-                return true;
+            if ((stockList.get(index).getItemId().equalsIgnoreCase(idString)) && stockList.get(index).getQuantity() > quantity) {
+                return index;
             }
         }
-        return false;
+        return 0;
     }
 
 }

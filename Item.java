@@ -9,7 +9,11 @@ public class Item {
     public Item(String itemId, String description, String stockStatus, int quantity, double unitPrice) {
         this.itemId = itemId;
         this.description = description;
-        this.stockStatus = stockStatus;
+        if (stockStatus.equalsIgnoreCase("true")) {
+            this.stockStatus = "1";
+        }else{
+            this.stockStatus = "0";
+        }
         this.quantity = quantity;
         
         if (quantity >=1 && quantity <= 4) {
@@ -25,7 +29,7 @@ public class Item {
             this.discountMultiplier = 0.20;
             this.discount = 20;
         }
-        this.unitPrice = unitPrice * discountMultiplier;
+        this.unitPrice = unitPrice - (unitPrice * discountMultiplier);
     }
 
     public String getItemId() {
@@ -86,15 +90,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "itemId='" + itemId + '\'' +
-                ", description='" + description + '\'' +
-                ", stockStatus='" + stockStatus + '\'' +
-                ", quantity=" + quantity +
-                ", discount=" + discount +
-                ", unitPrice=" + unitPrice +
-                ", discountMultiplier=" + discountMultiplier +
-                '}';
+        return itemId + " \"" + description + "\"" + " $" + unitPrice + " " + stockStatus + " " + discount + "% $" + unitPrice;
     }
 
     

@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class Cart {
-    private List<Item> cart;
+    private ArrayList<Item> cart;
     private double subtotal,taxRate;
 
     public Cart(){
@@ -13,11 +13,11 @@ public class Cart {
         this.taxRate = 1.06;
     }
 
-    public List<Item> getCart() {
+    public ArrayList<Item> getCart() {
         return cart;
     }
 
-    public void setCart(List<Item> cart) {
+    public void setCart(ArrayList<Item> cart) {
         this.cart = cart;
     }
 
