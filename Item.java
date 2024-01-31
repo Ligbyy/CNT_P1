@@ -2,25 +2,54 @@
 
 public class Item {
     
-    private int ID,quantity,numInCart;
-    private double price,discount;
-    private String name;
-
-    public Item (int ID, int quantity, int numInCart, double price, double discount, String name){
-        this.ID = ID;
+    private String itemId, description,stockStatus;
+    private int quantity, discount;
+    private double unitPrice,discountMultiplier;
+    
+    public Item(String itemId, String description, String stockStatus, int quantity, double unitPrice) {
+        this.itemId = itemId;
+        this.description = description;
+        this.stockStatus = stockStatus;
         this.quantity = quantity;
-        this.numInCart = numInCart;
-        this.price = price;
-        this.discount = discount;
-        this.name = name;
+        
+        if (quantity >=1 && quantity <= 4) {
+            this.discountMultiplier = 0.0;
+            this.discount = 0;
+        }else if (quantity >=5 && quantity <= 9) {
+            this.discountMultiplier = 0.10;
+            this.discount = 10;
+        }else if (quantity >=10 && quantity <= 14) {
+            this.discountMultiplier = 0.15;
+            this.discount = 15;
+        }else if (quantity >= 15) {
+            this.discountMultiplier = 0.20;
+            this.discount = 20;
+        }
+        this.unitPrice = unitPrice * discountMultiplier;
     }
 
-    public int getID() {
-        return ID;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setID(int iD) {
-        ID = iD;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStockStatus() {
+        return stockStatus;
+    }
+
+    public void setStockStatus(String stockStatus) {
+        this.stockStatus = stockStatus;
     }
 
     public int getQuantity() {
@@ -31,36 +60,45 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public int getNumInCart() {
-        return numInCart;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setNumInCart(int numInCart) {
-        this.numInCart = numInCart;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 
-    public void setDiscount(double discount) {
+    public void setDiscount(int discount) {
         this.discount = discount;
     }
 
-    public String getName() {
-        return name;
+    public double getDiscountMultiplier() {
+        return discountMultiplier;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDiscountMultiplier(double discountMultiplier) {
+        this.discountMultiplier = discountMultiplier;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId='" + itemId + '\'' +
+                ", description='" + description + '\'' +
+                ", stockStatus='" + stockStatus + '\'' +
+                ", quantity=" + quantity +
+                ", discount=" + discount +
+                ", unitPrice=" + unitPrice +
+                ", discountMultiplier=" + discountMultiplier +
+                '}';
+    }
+
+    
+    
+    
     
 }

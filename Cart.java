@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Cart {
     private List<Item> cart;
-    private double subtotal;
+    private double subtotal,taxRate;
 
     public Cart(){
         this.cart = new ArrayList<>();
         this.subtotal = 0.0;
+        this.taxRate = 1.06;
     }
 
     public List<Item> getCart() {
