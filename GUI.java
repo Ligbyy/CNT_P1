@@ -20,11 +20,11 @@ public class GUI extends JFrame {
     public GUI(Main.ButtonActionListener buttonActionListener) {
         this.buttonActionListener = buttonActionListener;
         setTitle("CNT Project 1");
-        setSize(800, 700); // Adjust size as needed
+        setSize(800, 700); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.DARK_GRAY);
 
-        setLayout(new BorderLayout(10, 10)); // Use BorderLayout
+        setLayout(new BorderLayout(10, 10)); 
 
         // Panel for item ID and quantity inputs, now using FlowLayout
         inputPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -105,7 +105,7 @@ public class GUI extends JFrame {
         
         
         
-         // Use final variable for use in lambda
+        
         actionButtons[0].addActionListener(e -> {//Find item 
             if (buttonActionListener != null) {
                 lastInput = itemIdInput.getText();
