@@ -90,7 +90,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return itemId + " \"" + description + "\"" + " $" + unitPrice + " " + stockStatus + " " + discount + "% $" + unitPrice;
+        return itemId + " \"" + description + "\"" + " " + unitPrice + " " + stockStatus + " " + discount + "% $" + unitPrice;
     }
 
     

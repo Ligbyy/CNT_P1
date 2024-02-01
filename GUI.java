@@ -15,6 +15,7 @@ public class GUI extends JFrame {
     private int lastIntInput = 0;
     private boolean isClicked = false;
     private Main.ButtonActionListener buttonActionListener;
+    private JLabel shoppingCartTitle,currentItemDetailsDisplay,currentItemIDDisplay, currentItemDetailsDisplayTwo,currentSubtotalDisplay;
 
     public GUI(Main.ButtonActionListener buttonActionListener) {
         this.buttonActionListener = buttonActionListener;
@@ -36,16 +37,21 @@ public class GUI extends JFrame {
         
        
 
-
-        inputPanel.add(new JLabel("Enter Item ID for Item #:"));
+        currentItemIDDisplay = new JLabel("Enter Item ID for Item 1");
+        inputPanel.add(currentItemIDDisplay);
+        
         inputPanel.add(itemIdInput);
 
-        
-        inputPanel.add(new JLabel("Enter Quantity for Item #:"));
+        currentItemDetailsDisplay = new JLabel("Enter Quantity for Item 1");
+        inputPanel.add(currentItemDetailsDisplay);
         inputPanel.add(quantityInput);
-        inputPanel.add(new JLabel("Item Details for Item #:"));
+        
+        currentItemDetailsDisplayTwo = new JLabel("Item Details for Item 1");
+        inputPanel.add(currentItemDetailsDisplayTwo);
         inputPanel.add(itemDetailsDisplay);
-        inputPanel.add(new JLabel("Current Subtotal for N Items:"));
+        
+        currentSubtotalDisplay = new JLabel("Current Subtotal for 1 Items");
+        inputPanel.add(currentSubtotalDisplay);
         inputPanel.add(subtotalDisplay);
         itemDetailsDisplay.setEditable(false);
         subtotalDisplay.setEditable(false);
@@ -53,15 +59,17 @@ public class GUI extends JFrame {
         // Adding the input panel to the NORTH of the main frame
         add(inputPanel, BorderLayout.NORTH);
 
+
         // Shopping Cart Display in the CENTER
         shoppingCart = new JPanel();
         shoppingCart.setLayout(new BoxLayout(shoppingCart, BoxLayout.Y_AXIS));
-        shoppingCart.add(new JLabel("Your shopping cart is: " + "Change here"));
-        a1 = new JTextArea("Item 1");
-        a2 = new JTextArea("Item 2");
-        a3 = new JTextArea("Item 3");
-        a4 = new JTextArea("Item 4");
-        a5 = new JTextArea("Item 5");
+        shoppingCartTitle = new JLabel("Your shopping cart with: 0 items");
+        shoppingCart.add(shoppingCartTitle);
+        a1 = new JTextArea("");
+        a2 = new JTextArea("");
+        a3 = new JTextArea("");
+        a4 = new JTextArea("");
+        a5 = new JTextArea("");
 
         a1.setEditable(false);
         a2.setEditable(false);
@@ -87,12 +95,12 @@ public class GUI extends JFrame {
             buttonPanel.add(actionButtons[i]);
         }
 
-        actionButtons[0].setText("Find Item:");
-        actionButtons[1].setText("Add Item # to Cart");
+        actionButtons[0].setText("Find Item 1");
+        actionButtons[1].setText("Add Item 1 to Cart");
         actionButtons[2].setText("View Current Cart");
         actionButtons[3].setText("Check Out");
         actionButtons[4].setText("Empty Cart- Start New Order");
-        actionButtons[5].setText("Find Item: Curr#");
+        actionButtons[5].setText("Exit (Close App)");
 
         
         
@@ -140,6 +148,9 @@ public class GUI extends JFrame {
                 buttonActionListener.onButtonClicked(5, getLastInput(),0);
             }
         });
+        actionButtons[1].setEnabled(false);
+        actionButtons[3].setEnabled(false);
+        actionButtons[2].setEnabled(false);
 
         add(buttonPanel, BorderLayout.SOUTH);
 
@@ -154,11 +165,107 @@ public class GUI extends JFrame {
 
     
 
+    public JLabel getCurrentItemDetailsDisplay() {
+        return currentItemDetailsDisplay;
+    }
+
+
+
+
+
+    public void setCurrentItemDetailsDisplay(JLabel currentItemDetailsDisplay) {
+        this.currentItemDetailsDisplay = currentItemDetailsDisplay;
+    }
+
+
+
+
+
+    public JLabel getCurrentItemIDDisplay() {
+        return currentItemIDDisplay;
+    }
+
+
+
+
+
+    public void setCurrentItemIDDisplay(JLabel currentItemIDDisplay) {
+        this.currentItemIDDisplay = currentItemIDDisplay;
+    }
+
+
+
+
+
+    public JLabel getCurrentItemDetailsDisplayTwo() {
+        return currentItemDetailsDisplayTwo;
+    }
+
+
+
+
+
+    public void setCurrentItemDetailsDisplayTwo(JLabel currentItemDetailsDisplayTwo) {
+        this.currentItemDetailsDisplayTwo = currentItemDetailsDisplayTwo;
+    }
+
+
+
+
+
+    public JLabel getCurrentSubtotalDisplay() {
+        return currentSubtotalDisplay;
+    }
+
+
+
+
+
+    public void setCurrentSubtotalDisplay(JLabel currentSubtotalDisplay) {
+        this.currentSubtotalDisplay = currentSubtotalDisplay;
+    }
+
+
+
+
+
     public boolean isClicked() {
         return isClicked;
     }
 
     
+
+
+    public Main.ButtonActionListener getButtonActionListener() {
+        return buttonActionListener;
+    }
+
+
+
+
+
+    public void setButtonActionListener(Main.ButtonActionListener buttonActionListener) {
+        this.buttonActionListener = buttonActionListener;
+    }
+
+
+
+
+
+    public JLabel getShoppingCartTitle() {
+        return shoppingCartTitle;
+    }
+
+
+
+
+
+    public void setShoppingCartTitle(JLabel shoppingCartTitle) {
+        this.shoppingCartTitle = shoppingCartTitle;
+    }
+
+
+
 
 
     public void setClicked(boolean isClicked) {
